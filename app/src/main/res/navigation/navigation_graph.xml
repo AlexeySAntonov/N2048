@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation_graph">
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@+id/welcomeScreenFragment">
+
+    <fragment
+        android:id="@+id/welcomeScreenFragment"
+        android:name="com.aleksejantonov.n2048.ui.welcome.WelcomeScreenFragment"
+        android:label="fragment_welcome_screen"
+        tools:layout="@layout/fragment_welcome_screen">
+
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_newGameFragment"
+            app:destination="@+id/newGameFragment"/>
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_scoresFragment"
+            app:destination="@+id/scoresFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/newGameFragment"
+        android:name="com.aleksejantonov.n2048.ui.newgame.NewGameFragment"
+        android:label="fragment_new_game"
+        tools:layout="@layout/fragment_new_game"/>
+
+    <fragment
+        android:id="@+id/scoresFragment"
+        android:name="com.aleksejantonov.n2048.ui.scores.ScoresFragment"
+        android:label="fragment_new_game"
+        tools:layout="@layout/fragment_scores"/>
 
 </navigation>
