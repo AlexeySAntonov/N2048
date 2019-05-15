@@ -6,6 +6,7 @@ import com.aleksejantonov.n2048.db.impl.di.DatabaseComponent
 import com.aleksejantonov.n2048.di.module.AppModule
 import com.aleksejantonov.n2048.di.module.NavigationModule
 import com.aleksejantonov.n2048.feature.game.api.di.GameFeatureApi
+import com.aleksejantonov.n2048.feature.game.impl.di.DaggerGameFeatureDependenciesComponent
 import com.aleksejantonov.n2048.feature.game.impl.di.GameFeatureComponent
 
 class ComponentManager(private val context: Context) {
@@ -26,7 +27,7 @@ class ComponentManager(private val context: Context) {
 
     fun getGameFeature(): GameFeatureApi {
         return GameFeatureComponent.initAndGet(
-            DaggerGameFeatureDependencies.builder()
+            DaggerGameFeatureDependenciesComponent.builder()
                 .coreDatabaseApi(DatabaseComponent.initAndGet(context))
                 .build()
         )

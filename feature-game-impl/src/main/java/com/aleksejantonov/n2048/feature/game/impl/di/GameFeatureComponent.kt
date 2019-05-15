@@ -1,5 +1,6 @@
 package com.aleksejantonov.n2048.feature.game.impl.di
 
+import com.aleksejantonov.n2048.db.api.data.DatabaseClientApi
 import com.aleksejantonov.n2048.db.api.di.CoreDatabaseApi
 import com.aleksejantonov.n2048.feature.game.api.di.GameFeatureApi
 import com.aleksejantonov.n2048.feature.game.impl.NewGameFragment
@@ -29,6 +30,10 @@ interface GameFeatureComponent : GameFeatureApi {
     }
 }
 
+interface GameFeatureDependencies {
+    fun databaseClientApi(): DatabaseClientApi
+}
+
 @Component(dependencies = [CoreDatabaseApi::class])
 @FeatureScope
-interface GameFeatureDependencies
+interface GameFeatureDependenciesComponent : GameFeatureDependencies
