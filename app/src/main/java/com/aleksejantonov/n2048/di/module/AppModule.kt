@@ -1,4 +1,4 @@
-package com.aleksejantonov.n2048.di
+package com.aleksejantonov.n2048.di.module
 
 import android.content.Context
 import dagger.Module

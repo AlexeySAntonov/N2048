@@ -1,12 +1,13 @@
 package com.aleksejantonov.n2048.di
 
-import com.aleksejantonov.n2048.db.impl.di.DatabaseComponentDependencies
+import com.aleksejantonov.n2048.di.module.AppModule
+import com.aleksejantonov.n2048.di.module.NavigationModule
 import com.aleksejantonov.n2048.ui.MainActivity
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(modules = [AppModule::class])
+@Component(modules = [AppModule::class, NavigationModule::class])
 @Singleton
-interface AppComponent : DatabaseComponentDependencies {
+interface AppComponent {
     fun inject(activity: MainActivity)
 }

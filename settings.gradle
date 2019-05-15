@@ -1,1 +1,7 @@
-include ':app', ':core-db-impl', ':core-db-api', ':core-model', ':core-ui-base'
+include ':app',
+        ':core-db-impl',
+        ':core-db-api',
+        ':core-model',
+        ':core-ui-base',
+        ':feature-game-api',
+        ':feature-game-impl'

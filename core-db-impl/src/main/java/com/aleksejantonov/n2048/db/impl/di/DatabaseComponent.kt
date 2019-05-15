@@ -5,15 +5,20 @@ import com.aleksejantonov.n2048.db.api.di.CoreDatabaseApi
 import dagger.Component
 import javax.inject.Singleton
 
-@Component(
-    modules = [DatabaseModule::class],
-    dependencies = [DatabaseComponentDependencies::class]
-)
+@Component(modules = [DatabaseModule::class])
 @Singleton
 interface DatabaseComponent : CoreDatabaseApi {
 
-}
+    companion object {
+        private var databaseComponent: DatabaseComponent? = null
 
-interface DatabaseComponentDependencies {
-    fun context(): Context
+        fun initAndGet(context: Context): CoreDatabaseApi {
+            if (databaseComponent == null) {
+                databaseComponent = DaggerDatabaseComponent.builder()
+                    .databaseModule(DatabaseModule(context))
+                    .build()
+            }
+            return requireNotNull(databaseComponent)
+        }
+    }
 }
