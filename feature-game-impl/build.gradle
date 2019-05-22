@@ -17,6 +17,7 @@ android {
 dependencies {
     implementation project(':feature-game-api')
     implementation project(':core-db-api')
+    implementation project(':core-navigation-api')
     implementation project(':core-ui-base')
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -31,5 +32,4 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.16'
 
     implementation "androidx.navigation:navigation-fragment-ktx:2.0.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.0.0"
 }

@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_welcome_screen">
 
         <action
-            android:id="@+id/action_welcomeScreenFragment_to_newGameFragment"
+            android:id="@id/action_welcomeScreenFragment_to_newGameFragment"
             app:destination="@+id/newGameFragment"/>
         <action
             android:id="@+id/action_welcomeScreenFragment_to_scoresFragment"

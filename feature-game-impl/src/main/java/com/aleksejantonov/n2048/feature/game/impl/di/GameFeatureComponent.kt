@@ -1,5 +1,7 @@
 package com.aleksejantonov.n2048.feature.game.impl.di
 
+import com.aleksejantonov.core.navigation.api.data.AppRouter
+import com.aleksejantonov.core.navigation.api.di.CoreNavigationApi
 import com.aleksejantonov.n2048.db.api.data.DatabaseClientApi
 import com.aleksejantonov.n2048.db.api.di.CoreDatabaseApi
 import com.aleksejantonov.n2048.feature.game.api.di.GameFeatureApi
@@ -32,8 +34,9 @@ interface GameFeatureComponent : GameFeatureApi {
 
 interface GameFeatureDependencies {
     fun databaseClientApi(): DatabaseClientApi
+    fun appRouter(): AppRouter
 }
 
-@Component(dependencies = [CoreDatabaseApi::class])
+@Component(dependencies = [CoreDatabaseApi::class, CoreNavigationApi::class])
 @FeatureScope
 interface GameFeatureDependenciesComponent : GameFeatureDependencies

@@ -2,6 +2,9 @@ package com.aleksejantonov.n2048.di
 
 import android.content.Context
 import androidx.navigation.NavController
+import com.aleksejantonov.core.navigation.api.di.CoreNavigationApi
+import com.aleksejantonov.core.navigation.impl.di.NavigationComponent
+import com.aleksejantonov.n2048.db.api.di.CoreDatabaseApi
 import com.aleksejantonov.n2048.db.impl.di.DatabaseComponent
 import com.aleksejantonov.n2048.di.module.AppModule
 import com.aleksejantonov.n2048.di.module.NavigationModule
@@ -12,6 +15,8 @@ import com.aleksejantonov.n2048.feature.game.impl.di.GameFeatureComponent
 class ComponentManager(private val context: Context) {
 
     private var appComponent: AppComponent? = null
+    private lateinit var databaseApi: CoreDatabaseApi
+    private lateinit var navigationApi: CoreNavigationApi
 
     fun appComponent(navigationController: NavController): AppComponent {
         if (appComponent == null) {
@@ -19,16 +24,32 @@ class ComponentManager(private val context: Context) {
                 .appModule(AppModule(context))
                 .navigationModule(NavigationModule(navigationController))
                 .build()
+
+            initDatabase()
+            initNavigation(navigationController)
         }
         return requireNotNull(appComponent)
     }
+
+    /** GLOBAL APIs initialization */
+
+    private fun initDatabase() {
+        databaseApi = DatabaseComponent.initAndGet(context)
+    }
+
+    private fun initNavigation(navigationController: NavController) {
+        navigationApi = NavigationComponent.initAndGet(navigationController)
+    }
+
+    /** GLOBAL APIs initialization END */
 
     /** FEATURE REGION */
 
     fun getGameFeature(): GameFeatureApi {
         return GameFeatureComponent.initAndGet(
             DaggerGameFeatureDependenciesComponent.builder()
-                .coreDatabaseApi(DatabaseComponent.initAndGet(context))
+                .coreDatabaseApi(databaseApi)
+                .coreNavigationApi(navigationApi)
                 .build()
         )
     }

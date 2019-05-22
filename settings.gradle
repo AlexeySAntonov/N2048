@@ -4,4 +4,6 @@ include ':app',
         ':core-model',
         ':core-ui-base',
         ':feature-game-api',
-        ':feature-game-impl'
+        ':feature-game-impl',
+        ':core-navigation-api',
+        ':core-navigation-impl'

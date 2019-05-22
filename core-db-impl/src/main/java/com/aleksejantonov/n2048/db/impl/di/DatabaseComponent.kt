@@ -20,5 +20,7 @@ interface DatabaseComponent : CoreDatabaseApi {
             }
             return requireNotNull(databaseComponent)
         }
+
+        fun get(): CoreDatabaseApi = requireNotNull(databaseComponent)
     }
 }

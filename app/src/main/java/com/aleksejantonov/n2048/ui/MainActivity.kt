@@ -14,9 +14,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        DI.componentManager().appComponent(navigationController).inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        DI.componentManager().appComponent(navigationController).inject(this)
     }
 
     override fun onSupportNavigateUp(): Boolean = navigationController.navigateUp()
