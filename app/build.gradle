@@ -24,6 +24,7 @@ dependencies {
     implementation project(':feature-game-api')
     implementation project('::feature-game-impl')
     implementation project(':feature-scores-api')
+    implementation project(':feature-scores-impl')
     implementation project(':core-db-api')
     implementation project(':core-db-impl')
     implementation project(':core-navigation-api')

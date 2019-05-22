@@ -15,7 +15,7 @@ android {
 }
 
 dependencies {
-    implementation project(':feature-game-api')
+    implementation project(':feature-scores-api')
     implementation project(':core-db-api')
     implementation project(':core-navigation-api')
     implementation project(':core-ui-base')
@@ -31,6 +31,4 @@ dependencies {
     kapt 'androidx.room:room-compiler:2.1.0-beta01'
     implementation 'com.google.dagger:dagger:2.17'
     kapt 'com.google.dagger:dagger-compiler:2.16'
-
-    implementation "androidx.navigation:navigation-fragment-ktx:2.0.0"
 }

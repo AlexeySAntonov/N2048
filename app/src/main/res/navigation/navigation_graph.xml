@@ -15,7 +15,7 @@
             android:id="@id/action_welcomeScreenFragment_to_newGameFragment"
             app:destination="@+id/newGameFragment"/>
         <action
-            android:id="@+id/action_welcomeScreenFragment_to_scoresFragment"
+            android:id="@id/action_welcomeScreenFragment_to_scoresFragment"
             app:destination="@+id/scoresFragment"/>
 
     </fragment>
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/scoresFragment"
-        android:name="com.aleksejantonov.n2048.ui.scores.ScoresFragment"
+        android:name="com.aleksejantonov.n2048.feature.scores.impl.ScoresFragment"
         android:label="fragment_new_game"
         tools:layout="@layout/fragment_scores"/>
 

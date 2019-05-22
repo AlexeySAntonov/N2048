@@ -9,6 +9,6 @@ import dagger.Module
 abstract class GameFeatureModule {
 
     @Binds
-    @FeatureScope
+    @GameFeatureScope
     abstract fun bindGameStarter(gameStarter: GameStarterImpl): GameStarter
 }

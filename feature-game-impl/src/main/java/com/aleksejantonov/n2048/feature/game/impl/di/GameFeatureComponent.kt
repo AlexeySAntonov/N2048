@@ -12,7 +12,7 @@ import dagger.Component
     modules = [GameFeatureModule::class],
     dependencies = [GameFeatureDependencies::class]
 )
-@FeatureScope
+@GameFeatureScope
 interface GameFeatureComponent : GameFeatureApi {
     fun inject(fragment: NewGameFragment)
 
@@ -38,5 +38,5 @@ interface GameFeatureDependencies {
 }
 
 @Component(dependencies = [CoreDatabaseApi::class, CoreNavigationApi::class])
-@FeatureScope
+@GameFeatureScope
 interface GameFeatureDependenciesComponent : GameFeatureDependencies

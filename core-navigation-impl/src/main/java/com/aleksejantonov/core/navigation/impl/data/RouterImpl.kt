@@ -15,6 +15,10 @@ class RouterImpl(private val navigationController: NavController) : AppRouter {
                 R.id.action_welcomeScreenFragment_to_newGameFragment,
                 args
             )
+            FRAGMENT_SCORES -> navigationController.navigate(
+                R.id.action_welcomeScreenFragment_to_scoresFragment,
+                args
+            )
         }
     }
 }
