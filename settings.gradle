@@ -6,4 +6,5 @@ include ':app',
         ':feature-game-api',
         ':feature-game-impl',
         ':core-navigation-api',
-        ':core-navigation-impl'
+        ':core-navigation-impl',
+        ':feature-scores-api'
