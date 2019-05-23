@@ -8,4 +8,6 @@ include ':app',
         ':core-navigation-api',
         ':core-navigation-impl',
         ':feature-scores-api',
-        ':feature-scores-impl'
+        ':feature-scores-impl',
+        ':feature-chooseplayer-api',
+        ':feature-chooseplayer-impl'

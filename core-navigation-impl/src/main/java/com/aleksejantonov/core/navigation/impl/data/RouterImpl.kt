@@ -11,12 +11,16 @@ class RouterImpl(private val navigationController: NavController) : AppRouter {
 
     override fun navigateTo(screen: Screens, args: Bundle?) {
         when (screen) {
-            FRAGMENT_GAME -> navigationController.navigate(
+            FRAGMENT_GAME          -> navigationController.navigate(
                 R.id.action_welcomeScreenFragment_to_newGameFragment,
                 args
             )
-            FRAGMENT_SCORES -> navigationController.navigate(
+            FRAGMENT_SCORES        -> navigationController.navigate(
                 R.id.action_welcomeScreenFragment_to_scoresFragment,
+                args
+            )
+            FRAGMENT_CHOOSE_PLAYER -> navigationController.navigate(
+                R.id.action_welcomeScreenFragment_to_choosePlayerFragment,
                 args
             )
         }

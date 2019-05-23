@@ -7,6 +7,9 @@ import com.aleksejantonov.core.navigation.impl.di.NavigationComponent
 import com.aleksejantonov.n2048.db.api.di.CoreDatabaseApi
 import com.aleksejantonov.n2048.db.impl.di.DatabaseComponent
 import com.aleksejantonov.n2048.di.module.AppModule
+import com.aleksejantonov.n2048.feature.chooseplayer.api.di.ChoosePlayerFeatureApi
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.ChoosePlayerFeatureComponent
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.DaggerChoosePlayerFeatureDependenciesComponent
 import com.aleksejantonov.n2048.feature.game.api.di.GameFeatureApi
 import com.aleksejantonov.n2048.feature.game.impl.di.DaggerGameFeatureDependenciesComponent
 import com.aleksejantonov.n2048.feature.game.impl.di.GameFeatureComponent
@@ -58,6 +61,15 @@ class ComponentManager(private val context: Context) {
     fun getScoresFeature(): ScoreFeatureApi {
         return ScoresFeatureComponent.initAndGet(
             DaggerScoresFeatureDependenciesComponent.builder()
+                .coreDatabaseApi(databaseApi)
+                .coreNavigationApi(navigationApi)
+                .build()
+        )
+    }
+
+    fun getChoosePlayerFeature(): ChoosePlayerFeatureApi {
+        return ChoosePlayerFeatureComponent.initAndGet(
+            DaggerChoosePlayerFeatureDependenciesComponent.builder()
                 .coreDatabaseApi(databaseApi)
                 .coreNavigationApi(navigationApi)
                 .build()

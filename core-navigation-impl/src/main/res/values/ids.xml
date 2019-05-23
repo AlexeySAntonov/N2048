@@ -2,4 +2,5 @@
 <resources>
     <item name="action_welcomeScreenFragment_to_newGameFragment" type="id" />
     <item name="action_welcomeScreenFragment_to_scoresFragment" type="id" />
+    <item name="action_welcomeScreenFragment_to_choosePlayerFragment" type="id" />
 </resources>
