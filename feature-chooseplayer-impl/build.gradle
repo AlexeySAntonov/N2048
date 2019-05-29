@@ -19,6 +19,7 @@ dependencies {
     implementation project(':core-db-api')
     implementation project(':core-navigation-api')
     implementation project(':core-ui-base')
+    implementation project(':core-model')
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

@@ -29,6 +29,10 @@ interface ChoosePlayerFeatureComponent : ChoosePlayerFeatureApi {
         }
 
         fun get(): ChoosePlayerFeatureComponent = requireNotNull(choosePlayerFeatureComponent)
+
+        fun release() {
+            choosePlayerFeatureComponent = null
+        }
     }
 }
 

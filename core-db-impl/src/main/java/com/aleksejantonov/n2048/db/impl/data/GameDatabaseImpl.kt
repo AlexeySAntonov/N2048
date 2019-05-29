@@ -5,5 +5,5 @@ import androidx.room.RoomDatabase
 import com.aleksejantonov.n2048.db.api.data.DatabaseClientApi
 import com.aleksejantonov.n2048.model.Player
 
-@Database(entities = [Player::class], version = 1)
+@Database(entities = [Player::class], version = 1, exportSchema = false)
 abstract class GameDatabaseImpl : RoomDatabase(), DatabaseClientApi
