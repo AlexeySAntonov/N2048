@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">N2048</string>
+    <string name="new_player_button_label">new player</string>
+    <string name="player_score">Score: %1$d</string>
 </resources>

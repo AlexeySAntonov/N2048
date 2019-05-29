@@ -1,21 +1,31 @@
-package com.aleksejantonov.n2048.feature.chooseplayer.impl
+package com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.choose
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.aleksejantonov.n2048.core.ui.base.BaseFragment
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.R
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.data.viewmodel.ChoosePlayerViewModel
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.ChoosePlayerFeatureComponent
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.choose.adapter.PlayersAdapter
 import com.aleksejantonov.n2048.model.Player
+import kotlinx.android.synthetic.main.fragment_choose_player.*
+import javax.inject.Inject
 
 class ChoosePlayerFragment : BaseFragment() {
 
     override val layoutId: Int = R.layout.fragment_choose_player
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private val choosePlayerViewModel by lazy {
-        ViewModelProviders.of(this).get(ChoosePlayerViewModel::class.java)
+        ViewModelProviders.of(this, viewModelFactory)[ChoosePlayerViewModel::class.java]
     }
+
+    private val adapter by lazy { PlayersAdapter(choosePlayerViewModel::deletePlayer) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ChoosePlayerFeatureComponent.get().inject(this)
@@ -24,6 +34,8 @@ class ChoosePlayerFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViews()
+        initList()
         observePlayers()
     }
 
@@ -45,13 +57,24 @@ class ChoosePlayerFragment : BaseFragment() {
         }
     }
 
+    private fun initViews() {
+        newPlayer.setOnClickListener {
+            choosePlayerViewModel.createPlayer(Player(name = "Alex", score = 0))
+        }
+    }
+
+    private fun initList() {
+        with(recyclerView) {
+            adapter = this@ChoosePlayerFragment.adapter
+        }
+    }
+
     private fun observePlayers() {
-        choosePlayerViewModel
-            .getPlayers()
+        choosePlayerViewModel.getPlayers()
             .observe(
                 this,
                 Observer<List<Player>> {
-                    Toast.makeText(context, "PLAYERS ${it.joinToString()}", Toast.LENGTH_LONG).show()
+                    adapter.updateItems(it)
                 }
             )
     }

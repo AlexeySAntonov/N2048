@@ -22,7 +22,7 @@ android {
 
 dependencies {
     implementation project(':feature-game-api')
-    implementation project('::feature-game-impl')
+    implementation project(':feature-game-impl')
     implementation project(':feature-scores-api')
     implementation project(':feature-scores-impl')
     implementation project(':feature-chooseplayer-api')
@@ -46,5 +46,5 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:2.0.0"
     implementation "androidx.navigation:navigation-ui-ktx:2.0.0"
 
-    implementation 'com.airbnb.android:lottie:3.0.1'
+    implementation 'com.airbnb.android:lottie:3.0.3'
 }

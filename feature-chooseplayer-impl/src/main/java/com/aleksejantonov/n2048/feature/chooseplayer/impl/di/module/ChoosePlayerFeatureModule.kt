@@ -1,9 +1,10 @@
-package com.aleksejantonov.n2048.feature.chooseplayer.impl.di
+package com.aleksejantonov.n2048.feature.chooseplayer.impl.di.module
 
 import com.aleksejantonov.n2048.feature.chooseplayer.api.data.ChoosePlayerStarter
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.data.ChoosePlayerStarterImpl
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.data.repository.IPlayerRepository
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.data.repository.PlayerRepository
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.annotations.ChoosePlayerFeatureScope
 import dagger.Binds
 import dagger.Module
 

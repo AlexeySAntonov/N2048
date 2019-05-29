@@ -1,4 +1,4 @@
-package com.aleksejantonov.n2048.feature.chooseplayer.impl.di
+package com.aleksejantonov.n2048.feature.chooseplayer.impl.di.annotations
 
 import javax.inject.Scope
 

@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/choosePlayerFragment"
-        android:name="com.aleksejantonov.n2048.feature.chooseplayer.impl.ChoosePlayerFragment"
+        android:name="com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.choose.ChoosePlayerFragment"
         android:label="fragment_choose_player"
         tools:layout="@layout/fragment_choose_player"/>
 

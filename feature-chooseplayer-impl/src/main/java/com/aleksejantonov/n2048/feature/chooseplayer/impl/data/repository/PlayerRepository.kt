@@ -9,6 +9,16 @@ class PlayerRepository @Inject constructor(
     private val databaseClientApi: DatabaseClientApi
 ) : IPlayerRepository {
 
+    override fun createPlayer(player: Player) =
+        databaseClientApi
+            .playerDao()
+            .insertPlayer(player)
+
+    override fun deletePlayer(id: Long) =
+        databaseClientApi
+            .playerDao()
+            .removePlayer(id)
+
     override fun getAllPlayers(): LiveData<List<Player>> =
         databaseClientApi
             .playerDao()

@@ -5,11 +5,14 @@ import com.aleksejantonov.core.navigation.api.di.CoreNavigationApi
 import com.aleksejantonov.n2048.db.api.data.DatabaseClientApi
 import com.aleksejantonov.n2048.db.api.di.CoreDatabaseApi
 import com.aleksejantonov.n2048.feature.chooseplayer.api.di.ChoosePlayerFeatureApi
-import com.aleksejantonov.n2048.feature.chooseplayer.impl.ChoosePlayerFragment
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.choose.ChoosePlayerFragment
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.annotations.ChoosePlayerFeatureScope
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.module.ChoosePlayerFeatureModule
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.module.ChoosePlayerViewModelModule
 import dagger.Component
 
 @Component(
-    modules = [ChoosePlayerFeatureModule::class],
+    modules = [ChoosePlayerFeatureModule::class, ChoosePlayerViewModelModule::class],
     dependencies = [ChoosePlayerFeatureDependencies::class]
 )
 @ChoosePlayerFeatureScope
