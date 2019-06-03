@@ -39,6 +39,18 @@
         android:id="@+id/choosePlayerFragment"
         android:name="com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.choose.ChoosePlayerFragment"
         android:label="fragment_choose_player"
-        tools:layout="@layout/fragment_choose_player"/>
+        tools:layout="@layout/fragment_choose_player">
+
+        <action
+            android:id="@id/action_choosePlayerFragment_to_newPlayerFragment"
+            app:destination="@+id/newPlayerFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/newPlayerFragment"
+        android:name="com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.newplayer.NewPlayerFragment"
+        android:label="fragment_new_player"
+        tools:layout="@layout/fragment_new_player"/>
 
 </navigation>

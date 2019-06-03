@@ -8,5 +8,5 @@ data class Player(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
     var name: String,
-    var score: Long
+    var score: Long = 0
 )

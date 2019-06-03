@@ -23,6 +23,14 @@ class RouterImpl(private val navigationController: NavController) : AppRouter {
                 R.id.action_welcomeScreenFragment_to_choosePlayerFragment,
                 args
             )
+            FRAGMENT_NEW_PLAYER    -> navigationController.navigate(
+                R.id.action_choosePlayerFragment_to_newPlayerFragment,
+                args
+            )
         }
+    }
+
+    override fun navigateUp() {
+        navigationController.navigateUp()
     }
 }

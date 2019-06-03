@@ -2,4 +2,9 @@
     <string name="app_name">N2048</string>
     <string name="new_player_button_label">new player</string>
     <string name="player_score">Score: %1$d</string>
+    <string name="hint_player_name">Player name</string>
+    <string name="new_player_create_button_text">Create</string>
+    <string name="create_player_success">Player successfully created</string>
+    <string name="create_player_failure">Oops, something went wrong, try to create player later</string>
+    <string name="create_player_again">Create new one?</string>
 </resources>

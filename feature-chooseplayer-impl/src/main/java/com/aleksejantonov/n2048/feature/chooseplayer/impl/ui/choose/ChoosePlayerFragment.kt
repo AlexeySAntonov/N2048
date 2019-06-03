@@ -59,7 +59,7 @@ class ChoosePlayerFragment : BaseFragment() {
 
     private fun initViews() {
         newPlayer.setOnClickListener {
-            choosePlayerViewModel.createPlayer(Player(name = "Alex", score = 0))
+            choosePlayerViewModel.openNewPlayerScreen()
         }
     }
 

@@ -4,4 +4,5 @@ import android.os.Bundle
 
 interface AppRouter {
     fun navigateTo(screen: Screens, args: Bundle? = null)
+    fun navigateUp()
 }

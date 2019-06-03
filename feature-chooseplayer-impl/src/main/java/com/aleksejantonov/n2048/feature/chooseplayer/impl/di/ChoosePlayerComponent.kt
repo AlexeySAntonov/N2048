@@ -9,6 +9,7 @@ import com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.choose.ChoosePlayer
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.annotations.ChoosePlayerFeatureScope
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.module.ChoosePlayerFeatureModule
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.module.ChoosePlayerViewModelModule
+import com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.newplayer.NewPlayerFragment
 import dagger.Component
 
 @Component(
@@ -18,6 +19,7 @@ import dagger.Component
 @ChoosePlayerFeatureScope
 interface ChoosePlayerFeatureComponent : ChoosePlayerFeatureApi {
     fun inject(fragment: ChoosePlayerFragment)
+    fun inject(fragment: NewPlayerFragment)
 
     companion object {
         private var choosePlayerFeatureComponent: ChoosePlayerFeatureComponent? = null
