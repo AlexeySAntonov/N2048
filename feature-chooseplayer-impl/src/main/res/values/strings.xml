@@ -7,4 +7,5 @@
     <string name="create_player_success">Player successfully created</string>
     <string name="create_player_failure">Oops, something went wrong, try to create player later</string>
     <string name="create_player_again">Create new one?</string>
+    <string name="new_player_toolbar_title">New player</string>
 </resources>

@@ -4,6 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/view_toolbar"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/titleInputLayout"
         android:layout_width="match_parent"
@@ -14,7 +18,7 @@
         app:counterMaxLength="20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <EditText
             android:id="@+id/titleInput"
@@ -51,7 +55,7 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <include
-        android:id="@+id/progressBar"
-        layout="@layout/view_progress_bar" />
+        layout="@layout/view_progress_bar"
+        android:id="@+id/progressBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

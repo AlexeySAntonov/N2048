@@ -5,6 +5,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.aleksejantonov.n2048.core.ui.base.BaseFragment
@@ -43,7 +44,15 @@ class NewPlayerFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         ChoosePlayerFeatureComponent.get().inject(this)
         super.onViewCreated(view, savedInstanceState)
+        initToolbar()
         initViews()
+    }
+
+    private fun initToolbar() {
+        with(toolbar as Toolbar) {
+            setTitle(R.string.new_player_toolbar_title)
+            setNavigationOnClickListener { newPlayerViewModel.onBackPressed() }
+        }
     }
 
     private fun initViews() {
