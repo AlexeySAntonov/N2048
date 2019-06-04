@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
 
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/view_toolbar"/>
+        layout="@layout/view_toolbar"
+        android:id="@+id/toolbar" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/titleInputLayout"
@@ -46,6 +46,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/buttonTint"
+        android:enabled="false"
         android:text="@string/new_player_create_button_text"
         android:textColor="@color/white"
         android:textSize="20sp"
