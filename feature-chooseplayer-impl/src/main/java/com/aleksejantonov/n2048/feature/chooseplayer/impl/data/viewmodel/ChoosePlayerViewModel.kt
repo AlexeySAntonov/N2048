@@ -24,4 +24,6 @@ class ChoosePlayerViewModel @Inject constructor(
     fun getPlayers(): LiveData<List<Player>> = playerRepository.getAllPlayers()
 
     fun openNewPlayerScreen() = appRouter.navigateTo(Screens.FRAGMENT_NEW_PLAYER)
+
+    fun onBackPressed() = appRouter.navigateUp()
 }

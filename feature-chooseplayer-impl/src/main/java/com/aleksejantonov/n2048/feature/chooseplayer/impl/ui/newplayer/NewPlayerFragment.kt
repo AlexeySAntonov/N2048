@@ -25,6 +25,8 @@ import javax.inject.Inject
 
 class NewPlayerFragment : BaseFragment() {
 
+    override val layoutId: Int = R.layout.fragment_new_player
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
@@ -38,8 +40,6 @@ class NewPlayerFragment : BaseFragment() {
             Timber.w(e)
         }
     }
-
-    override val layoutId: Int = R.layout.fragment_new_player
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         ChoosePlayerFeatureComponent.get().inject(this)

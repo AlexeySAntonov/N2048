@@ -2,6 +2,7 @@ package com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.choose
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -34,6 +35,7 @@ class ChoosePlayerFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar()
         initViews()
         initList()
         observePlayers()
@@ -54,6 +56,13 @@ class ChoosePlayerFragment : BaseFragment() {
 
         if (isRemoving) {
             ChoosePlayerFeatureComponent.release()
+        }
+    }
+
+    private fun initToolbar() {
+        with(toolbar as Toolbar) {
+            setTitle(R.string.choose_player_toolbar_title)
+            setNavigationOnClickListener { choosePlayerViewModel.onBackPressed() }
         }
     }
 
