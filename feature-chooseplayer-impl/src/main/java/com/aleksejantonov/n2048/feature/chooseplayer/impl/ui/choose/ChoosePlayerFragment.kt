@@ -79,7 +79,7 @@ class ChoosePlayerFragment : BaseFragment() {
     }
 
     private fun observePlayers() {
-        choosePlayerViewModel.getPlayers()
+        choosePlayerViewModel.observePlayers()
             .observe(
                 this,
                 Observer<List<Player>> {
