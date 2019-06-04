@@ -2,6 +2,8 @@ package com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.choose
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +28,9 @@ class ChoosePlayerFragment : BaseFragment() {
         ViewModelProviders.of(this, viewModelFactory)[ChoosePlayerViewModel::class.java]
     }
 
-    private val adapter by lazy { PlayersAdapter(choosePlayerViewModel::deletePlayer) }
+    private val adapter by lazy {
+        PlayersAdapter(choosePlayerViewModel::deletePlayer, choosePlayerViewModel::selectPlayer)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         ChoosePlayerFeatureComponent.get().inject(this)
@@ -39,6 +43,7 @@ class ChoosePlayerFragment : BaseFragment() {
         initViews()
         initList()
         observePlayers()
+        observeSelectedPlayer()
     }
 
     override fun onDestroy() {
@@ -86,5 +91,23 @@ class ChoosePlayerFragment : BaseFragment() {
                     adapter.updateItems(it)
                 }
             )
+    }
+
+    private fun observeSelectedPlayer() {
+        choosePlayerViewModel.observeSelectedPlayer()
+            .observe(
+                this,
+                Observer { players ->
+                    players.firstOrNull()
+                        ?.let {
+                            showToast(R.string.choose_player_selected_player, it.name)
+                        }
+                        ?: showToast(R.string.choose_player_no_one_selected)
+                }
+            )
+    }
+
+    private fun showToast(@StringRes messageId: Int, vararg args: Any) {
+        Toast.makeText(context, context?.getString(messageId, *args), Toast.LENGTH_LONG).show()
     }
 }

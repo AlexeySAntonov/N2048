@@ -7,5 +7,7 @@ interface IPlayerRepository {
 
     fun createPlayer(player: Player)
     fun deletePlayer(id: Long)
-    fun getAllPlayers(): LiveData<List<Player>>
+    fun observeAllPlayers(): LiveData<List<Player>>
+    fun observeSelectedPlayer(): LiveData<List<Player>>
+    fun selectPlayer(id: Long)
 }

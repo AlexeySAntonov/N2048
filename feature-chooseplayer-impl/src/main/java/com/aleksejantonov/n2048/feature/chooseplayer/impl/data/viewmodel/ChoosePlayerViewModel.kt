@@ -21,7 +21,15 @@ class ChoosePlayerViewModel @Inject constructor(
         }
     }
 
-    fun observePlayers(): LiveData<List<Player>> = playerRepository.getAllPlayers()
+    fun selectPlayer(id: Long) {
+        GlobalScope.async {
+            playerRepository.selectPlayer(id)
+        }
+    }
+
+    fun observePlayers(): LiveData<List<Player>> = playerRepository.observeAllPlayers()
+
+    fun observeSelectedPlayer(): LiveData<List<Player>> = playerRepository.observeSelectedPlayer()
 
     fun openNewPlayerScreen() = appRouter.navigateTo(Screens.FRAGMENT_NEW_PLAYER)
 

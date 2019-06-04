@@ -8,5 +8,6 @@ data class Player(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
     var name: String,
-    var score: Long = 0
+    var score: Long = 0,
+    var isSelected: Boolean = false
 )

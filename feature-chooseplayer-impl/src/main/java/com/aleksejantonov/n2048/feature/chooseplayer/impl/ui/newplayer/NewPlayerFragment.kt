@@ -118,8 +118,8 @@ class NewPlayerFragment : BaseFragment() {
         progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun showToast(@StringRes message: Int) {
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    private fun showToast(@StringRes messageId: Int) {
+        Toast.makeText(context, messageId, Toast.LENGTH_LONG).show()
     }
 
     private fun enableCreateButton(enabled: Boolean) {

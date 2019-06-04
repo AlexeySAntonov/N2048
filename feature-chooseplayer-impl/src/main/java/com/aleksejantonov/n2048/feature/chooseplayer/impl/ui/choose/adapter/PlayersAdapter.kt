@@ -9,7 +9,8 @@ import com.aleksejantonov.n2048.model.Player
 import kotlinx.android.synthetic.main.item_player.view.*
 
 class PlayersAdapter(
-    private val deleteListener: (Long) -> Unit
+    private val deleteListener: (Long) -> Unit,
+    private val selectListener: (Long) -> Unit
 ) : RecyclerView.Adapter<PlayersAdapter.ViewHolder>() {
 
     private var items: List<Player> = emptyList()
@@ -33,7 +34,9 @@ class PlayersAdapter(
             with(itemView) {
                 name.text = item.name
                 score.text = context.getString(R.string.player_score, item.score)
+                checkIcon.visibility = if (item.isSelected) View.VISIBLE else View.GONE
                 deleteIcon.setOnClickListener { deleteListener.invoke(item.id) }
+                setOnClickListener { selectListener.invoke(item.id) }
             }
         }
     }

@@ -22,4 +22,13 @@ interface PlayerDao {
 
     @Query("DELETE FROM player WHERE id = :id")
     fun removePlayer(id: Long)
+
+    @Query("UPDATE player SET isSelected = :isSelected WHERE id = :id")
+    fun selectPlayer(id: Long, isSelected: Boolean)
+
+    @Query("SELECT * FROM player WHERE isSelected = 1")
+    fun getSelectedPlayer(): Player?
+
+    @Query("SELECT * FROM player WHERE isSelected = 1")
+    fun observeSelectedPlayer(): LiveData<List<Player>>
 }

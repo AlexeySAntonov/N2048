@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground">
 
     <TextView
         android:id="@+id/name"
@@ -14,9 +15,9 @@
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:singleLine="true"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/score"
-        app:layout_constraintEnd_toStartOf="@+id/deleteIcon"
+        app:layout_constraintEnd_toStartOf="@+id/checkIcon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Alex Jr" />
@@ -29,11 +30,22 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="16dp"
         android:alpha="0.6"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name"
         tools:text="Score: 200" />
+
+    <ImageView
+        android:id="@+id/checkIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_check_24dp"
+        android:tint="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/deleteIcon"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/deleteIcon"
@@ -43,7 +55,7 @@
         android:background="?selectableItemBackgroundBorderless"
         android:padding="4dp"
         android:src="@drawable/ic_delete_24dp"
-        android:tint="@color/buttonTint"
+        android:tint="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
