@@ -10,5 +10,6 @@
     <string name="choose_player_toolbar_title">Choose player</string>
     <string name="choose_player_selected_player">%1$s was selected, admirable!</string>
     <string name="choose_player_no_one_selected">Create or select one</string>
+    <string name="choose_player_something_went_wrong">Oops, something went wrong</string>
     <string name="new_player_toolbar_title">New player</string>
 </resources>

@@ -9,12 +9,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.aleksejantonov.n2048.core.ui.base.BaseFragment
+import com.aleksejantonov.n2048.core.ui.base.UiState
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.R
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.data.viewmodel.ChoosePlayerViewModel
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.di.ChoosePlayerFeatureComponent
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.ui.choose.adapter.PlayersAdapter
 import com.aleksejantonov.n2048.model.Player
 import kotlinx.android.synthetic.main.fragment_choose_player.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import timber.log.Timber
 import javax.inject.Inject
 
 class ChoosePlayerFragment : BaseFragment() {
@@ -64,6 +67,20 @@ class ChoosePlayerFragment : BaseFragment() {
         }
     }
 
+    override fun showLoading(loading: Boolean) {
+        progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+    }
+
+    override fun showMessage(succeed: Boolean) {
+        if (succeed) return
+        showToast(R.string.choose_player_something_went_wrong)
+    }
+
+    override fun enableControls(enabled: Boolean) {
+        recyclerView.visibility = if (enabled) View.VISIBLE else View.GONE
+        newPlayer.isEnabled = enabled
+    }
+
     private fun initToolbar() {
         with(toolbar as Toolbar) {
             setTitle(R.string.choose_player_toolbar_title)
@@ -84,10 +101,12 @@ class ChoosePlayerFragment : BaseFragment() {
     }
 
     private fun observePlayers() {
+        setState(UiState.LOADING)
         choosePlayerViewModel.observePlayers()
             .observe(
                 this,
                 Observer<List<Player>> {
+                    setState(UiState.SUCCESS)
                     adapter.updateItems(it)
                 }
             )

@@ -10,6 +10,14 @@ abstract class BaseFragment : Fragment() {
 
     abstract val layoutId: Int
 
+    open fun showLoading(loading: Boolean) = Unit
+
+    open fun showMessage(succeed: Boolean) = Unit
+
+    open fun enableControls(enabled: Boolean) = Unit
+
+    open fun resetUi() = Unit
+
     protected var isStatedSaved: Boolean = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -30,14 +38,6 @@ abstract class BaseFragment : Fragment() {
         super.onSaveInstanceState(outState)
         isStatedSaved = true
     }
-
-    open fun showLoading(loading: Boolean) = Unit
-
-    open fun showMessage(succeed: Boolean) = Unit
-
-    open fun enableControls(enabled: Boolean) = Unit
-
-    open fun resetUi() = Unit
 
     fun setState(state: UiState) {
         when (state) {
