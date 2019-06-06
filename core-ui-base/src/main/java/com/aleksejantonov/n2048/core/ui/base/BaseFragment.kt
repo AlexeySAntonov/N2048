@@ -30,4 +30,32 @@ abstract class BaseFragment : Fragment() {
         super.onSaveInstanceState(outState)
         isStatedSaved = true
     }
+
+    open fun showLoading(loading: Boolean) = Unit
+
+    open fun showMessage(succeed: Boolean) = Unit
+
+    open fun enableControls(enabled: Boolean) = Unit
+
+    open fun resetUi() = Unit
+
+    fun setState(state: UiState) {
+        when (state) {
+            UiState.LOADING -> {
+                showLoading(true)
+                enableControls(false)
+            }
+            UiState.SUCCESS -> {
+                showMessage(true)
+                showLoading(false)
+                enableControls(true)
+                resetUi()
+            }
+            UiState.ERROR   -> {
+                showMessage(false)
+                showLoading(false)
+                enableControls(false)
+            }
+        }
+    }
 }

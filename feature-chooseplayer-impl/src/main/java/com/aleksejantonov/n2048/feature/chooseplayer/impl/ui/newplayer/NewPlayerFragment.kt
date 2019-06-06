@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -51,6 +50,26 @@ class NewPlayerFragment : BaseFragment() {
         observeName()
     }
 
+    override fun showLoading(loading: Boolean) {
+        progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+    }
+
+    override fun showMessage(succeed: Boolean) {
+        var messageId = R.string.create_player_failure
+        if (succeed) messageId = R.string.create_player_success
+        Toast.makeText(context, messageId, Toast.LENGTH_LONG).show()
+    }
+
+    override fun enableControls(enabled: Boolean) {
+        createPlayerButton.isEnabled = enabled
+        titleInput.isEnabled = enabled
+    }
+
+    override fun resetUi() {
+        titleInput.setText("")
+        createPlayerButton.text = context?.getText(R.string.create_player_again)
+    }
+
     private fun initToolbar() {
         with(toolbar as Toolbar) {
             setTitle(R.string.new_player_toolbar_title)
@@ -90,36 +109,6 @@ class NewPlayerFragment : BaseFragment() {
 
     private fun createPlayerAsync(): Deferred<Unit> {
         return newPlayerViewModel.createPlayerAsync(Player(name = titleInput.text.toString()))
-    }
-
-    private fun setState(state: UiState) {
-        when (state) {
-            UiState.LOADING -> {
-                showLoading(true)
-                createPlayerButton.isEnabled = false
-            }
-            UiState.SUCCESS -> {
-                showLoading(false)
-                createPlayerButton.isEnabled = true
-                titleInput.setText("")
-                createPlayerButton.text = context?.getText(R.string.create_player_again)
-                showToast(R.string.create_player_success)
-            }
-            UiState.ERROR   -> {
-                showLoading(false)
-                createPlayerButton.isEnabled = false
-                titleInput.isEnabled = false
-                showToast(R.string.create_player_failure)
-            }
-        }
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
-
-    private fun showToast(@StringRes messageId: Int) {
-        Toast.makeText(context, messageId, Toast.LENGTH_LONG).show()
     }
 
     private fun enableCreateButton(enabled: Boolean) {
