@@ -1,6 +1,7 @@
 package com.aleksejantonov.n2048.feature.chooseplayer.impl.data.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.aleksejantonov.core.navigation.api.data.AppRouter
 import com.aleksejantonov.core.navigation.api.data.Screens
@@ -27,9 +28,11 @@ class ChoosePlayerViewModel @Inject constructor(
         }
     }
 
-    fun observePlayers(): LiveData<List<Player>> = playerRepository.observeAllPlayers()
+    fun observePlayers(): LiveData<List<Player>> =
+        Transformations.distinctUntilChanged(playerRepository.observeAllPlayers())
 
-    fun observeSelectedPlayer(): LiveData<List<Player>> = playerRepository.observeSelectedPlayer()
+    fun observeSelectedPlayer(): LiveData<List<Player>> =
+        Transformations.distinctUntilChanged(playerRepository.observeSelectedPlayer())
 
     fun openNewPlayerScreen() = appRouter.navigateTo(Screens.FRAGMENT_NEW_PLAYER)
 
