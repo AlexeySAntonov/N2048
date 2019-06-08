@@ -3,21 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
+    <TextView
+        android:id="@+id/numCell"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="32dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:background="@drawable/background_cell"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:spanCount="4"
-        tools:itemCount="16"
-        tools:listitem="@layout/item_cell" />
-
+        tools:text="2048" />
 </androidx.constraintlayout.widget.ConstraintLayout>

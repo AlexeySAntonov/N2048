@@ -5,11 +5,14 @@ import com.aleksejantonov.core.navigation.api.di.CoreNavigationApi
 import com.aleksejantonov.n2048.db.api.data.DatabaseClientApi
 import com.aleksejantonov.n2048.db.api.di.CoreDatabaseApi
 import com.aleksejantonov.n2048.feature.game.api.di.GameFeatureApi
-import com.aleksejantonov.n2048.feature.game.impl.NewGameFragment
+import com.aleksejantonov.n2048.feature.game.impl.di.annotations.GameFeatureScope
+import com.aleksejantonov.n2048.feature.game.impl.di.module.GameFeatureModule
+import com.aleksejantonov.n2048.feature.game.impl.di.module.GameFeatureViewModelModule
+import com.aleksejantonov.n2048.feature.game.impl.ui.NewGameFragment
 import dagger.Component
 
 @Component(
-    modules = [GameFeatureModule::class],
+    modules = [GameFeatureModule::class, GameFeatureViewModelModule::class],
     dependencies = [GameFeatureDependencies::class]
 )
 @GameFeatureScope
