@@ -24,4 +24,22 @@ class NewGameFragment : BaseFragment() {
         GameFeatureComponent.get().inject(this)
         super.onCreate(savedInstanceState)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if (activity?.isFinishing == true) {
+            GameFeatureComponent.release()
+            return
+        }
+
+        if (isStatedSaved) {
+            isStatedSaved = false
+            return
+        }
+
+        if (isRemoving) {
+            GameFeatureComponent.release()
+        }
+    }
 }

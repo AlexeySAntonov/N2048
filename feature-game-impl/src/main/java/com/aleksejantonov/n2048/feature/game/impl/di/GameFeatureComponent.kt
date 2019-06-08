@@ -32,6 +32,10 @@ interface GameFeatureComponent : GameFeatureApi {
         }
 
         fun get(): GameFeatureComponent = requireNotNull(gameFeatureComponent)
+
+        fun release() {
+            gameFeatureComponent = null
+        }
     }
 }
 
