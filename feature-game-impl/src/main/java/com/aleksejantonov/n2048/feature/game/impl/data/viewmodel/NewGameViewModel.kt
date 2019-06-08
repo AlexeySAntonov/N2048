@@ -1,5 +1,6 @@
 package com.aleksejantonov.n2048.feature.game.impl.data.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aleksejantonov.core.navigation.api.data.AppRouter
 import com.aleksejantonov.n2048.feature.game.impl.data.repository.INewGameRepository
@@ -12,8 +13,16 @@ class NewGameViewModel @Inject constructor(
     private val appRouter: AppRouter
 ) : ViewModel() {
 
-    fun getInitialData(): List<Cell> {
-        return initializedList().apply {
+    private var cellsState = MutableLiveData<List<Cell>>()
+
+    fun getCellsState() = cellsState
+
+    fun setCellsState(cells: List<Cell>) {
+        cellsState.value = cells
+    }
+
+    fun initializedData() {
+        cellsState.value = initializedList().apply {
             val cellOne = randomizeCell()
             val cellTwo = randomizeCell()
             set(cellOne.id, cellOne)

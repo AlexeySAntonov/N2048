@@ -2,6 +2,7 @@ package com.aleksejantonov.n2048.feature.game.impl.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -36,7 +37,7 @@ class NewGameFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
-        setInitialData()
+        observeCellsState()
     }
 
     override fun onDestroy() {
@@ -65,7 +66,16 @@ class NewGameFragment : BaseFragment() {
         }
     }
 
-    private fun setInitialData() {
-        adapter.updateList(newGameViewModel.getInitialData())
+    private fun observeCellsState() {
+        with(newGameViewModel) {
+            getCellsState()
+                .observe(
+                    this@NewGameFragment,
+                    Observer {
+                        adapter.updateList(it)
+                    }
+                )
+            initializedData()
+        }
     }
 }
