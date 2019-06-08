@@ -4,7 +4,7 @@ import com.aleksejantonov.n2048.core.ui.base.DiffCalculable
 
 data class Cell(
     val id: Int,
-    val value: Int
+    val value: Int? = null
 ) : DiffCalculable {
 
     override fun isTheSame(other: DiffCalculable): Boolean =

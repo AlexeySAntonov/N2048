@@ -30,7 +30,7 @@ class CellsAdapter : RecyclerView.Adapter<CellsAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: Cell) {
             with(itemView) {
-                numCell.text = item.value.toString()
+                numCell.text = item.value?.toString() ?: ""
             }
         }
     }
