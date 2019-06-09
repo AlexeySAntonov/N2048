@@ -8,7 +8,7 @@ import com.aleksejantonov.n2048.feature.game.api.di.GameFeatureApi
 import com.aleksejantonov.n2048.feature.game.impl.di.annotations.GameFeatureScope
 import com.aleksejantonov.n2048.feature.game.impl.di.module.GameFeatureModule
 import com.aleksejantonov.n2048.feature.game.impl.di.module.GameFeatureViewModelModule
-import com.aleksejantonov.n2048.feature.game.impl.ui.NewGameFragment
+import com.aleksejantonov.n2048.feature.game.impl.ui.newgame.NewGameFragment
 import dagger.Component
 
 @Component(

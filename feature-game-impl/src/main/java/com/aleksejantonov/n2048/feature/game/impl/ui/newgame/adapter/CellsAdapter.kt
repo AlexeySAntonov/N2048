@@ -1,4 +1,4 @@
-package com.aleksejantonov.n2048.feature.game.impl.ui.adapter
+package com.aleksejantonov.n2048.feature.game.impl.ui.newgame.adapter
 
 import android.view.LayoutInflater
 import android.view.View

@@ -1,12 +1,13 @@
-package com.aleksejantonov.n2048.feature.game.impl.ui
+package com.aleksejantonov.n2048.feature.game.impl.ui.newgame.controller
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.RecyclerView
-import com.aleksejantonov.n2048.feature.game.impl.ui.adapter.CellsAdapter
+import com.aleksejantonov.n2048.feature.game.impl.data.viewmodel.NewGameViewModel
 
 class CellsSwipeController(
-    private val adapter: CellsAdapter
+    private val viewModel: NewGameViewModel,
+    private val recalculator: Recalculator
 ) : ItemTouchHelper.Callback() {
 
     override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
@@ -18,20 +19,7 @@ class CellsSwipeController(
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-
-        when (direction) {
-            UP    -> {
-
-            }
-            DOWN  -> {
-
-            }
-            LEFT  -> {
-
-            }
-            RIGHT -> {
-
-            }
-        }
+        val currentCells = viewModel.getCellsState().value
+        viewModel.setCellsState(recalculator.recalculateList(direction, currentCells!!))
     }
 }

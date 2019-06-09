@@ -1,4 +1,4 @@
-package com.aleksejantonov.n2048.feature.game.impl.ui
+package com.aleksejantonov.n2048.feature.game.impl.ui.newgame
 
 import android.os.Bundle
 import android.view.View
@@ -10,7 +10,9 @@ import com.aleksejantonov.n2048.core.ui.base.BaseFragment
 import com.aleksejantonov.n2048.feature.game.impl.R
 import com.aleksejantonov.n2048.feature.game.impl.data.viewmodel.NewGameViewModel
 import com.aleksejantonov.n2048.feature.game.impl.di.GameFeatureComponent
-import com.aleksejantonov.n2048.feature.game.impl.ui.adapter.CellsAdapter
+import com.aleksejantonov.n2048.feature.game.impl.ui.newgame.controller.CellsSwipeController
+import com.aleksejantonov.n2048.feature.game.impl.ui.newgame.adapter.CellsAdapter
+import com.aleksejantonov.n2048.feature.game.impl.ui.newgame.controller.Recalculator
 import kotlinx.android.synthetic.main.fragment_new_game.*
 import javax.inject.Inject
 
@@ -27,7 +29,9 @@ class NewGameFragment : BaseFragment() {
 
     private val adapter by lazy { CellsAdapter() }
 
-    private val cellsSwipeController by lazy { CellsSwipeController(adapter) }
+    private val cellsSwipeController by lazy {
+        CellsSwipeController(newGameViewModel, Recalculator())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         GameFeatureComponent.get().inject(this)

@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/newGameFragment"
-        android:name="com.aleksejantonov.n2048.feature.game.impl.ui.NewGameFragment"
+        android:name="com.aleksejantonov.n2048.feature.game.impl.ui.newgame.NewGameFragment"
         android:label="fragment_new_game"
         tools:layout="@layout/fragment_new_game"/>
 

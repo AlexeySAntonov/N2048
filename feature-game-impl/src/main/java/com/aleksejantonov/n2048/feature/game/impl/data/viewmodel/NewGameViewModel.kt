@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aleksejantonov.core.navigation.api.data.AppRouter
 import com.aleksejantonov.n2048.feature.game.impl.data.repository.INewGameRepository
-import com.aleksejantonov.n2048.feature.game.impl.ui.adapter.Cell
+import com.aleksejantonov.n2048.feature.game.impl.ui.newgame.adapter.Cell
 import javax.inject.Inject
 import kotlin.random.Random
 
