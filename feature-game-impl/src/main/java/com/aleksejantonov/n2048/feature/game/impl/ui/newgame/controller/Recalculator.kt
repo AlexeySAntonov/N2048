@@ -117,9 +117,20 @@ class Recalculator {
     }
 
     private fun pairEquality(vararg cells: Cell): Pair<Int, Int>? {
+        // Neighbors
         if (cells[0].value != null && cells[0].value == cells[1].value) return Pair(cells[0].id, cells[1].id)
         if (cells[1].value != null && cells[1].value == cells[2].value) return Pair(cells[1].id, cells[2].id)
         if (cells[2].value != null && cells[2].value == cells[3].value) return Pair(cells[2].id, cells[3].id)
+        // Through the holes
+        if (cells[0].value != null && cells[1].value == null && cells[0].value == cells[2].value) {
+            return Pair(cells[0].id, cells[2].id)
+        }
+        if (cells[0].value != null && cells[1].value == null && cells[2].value == null && cells[0].value == cells[3].value) {
+            return Pair(cells[0].id, cells[3].id)
+        }
+        if (cells[1].value != null && cells[2].value == null && cells[1].value == cells[3].value) {
+            return Pair(cells[1].id, cells[3].id)
+        }
         return null
     }
 
