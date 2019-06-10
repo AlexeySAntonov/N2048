@@ -106,7 +106,7 @@ class Recalculator {
                 }
             }
         }
-        return resultList
+        return resultList.addRandom()
     }
 
     private fun allNullsEquality(cells: List<Cell>): Boolean {
@@ -193,5 +193,16 @@ class Recalculator {
                 }
             }
         }
+    }
+
+    private fun MutableList<Cell>.addRandom(): MutableList<Cell> {
+        // mock
+        for (cell in this) {
+            if (cell.value == null) {
+                this[cell.id] = this[cell.id].copy(value = 2)
+                break
+            }
+        }
+        return this
     }
 }
