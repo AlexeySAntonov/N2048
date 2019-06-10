@@ -139,7 +139,7 @@ class Recalculator {
                 }
             }
             ItemTouchHelper.DOWN  -> {
-                for (i in cells.size - 1 until 1) {
+                for (i in cells.size - 1 downTo 1) {
                     if (initialList[cells[i].id].value == null) {
                         for (j in i - 1 downTo 0) {
                             if (cells[j].value != null) {
@@ -165,7 +165,7 @@ class Recalculator {
                 }
             }
             ItemTouchHelper.RIGHT -> {
-                for (i in cells.size - 1 until 1) {
+                for (i in cells.size - 1 downTo 1) {
                     if (initialList[cells[i].id].value == null) {
                         for (j in i - 1 downTo 0) {
                             if (cells[j].value != null) {
