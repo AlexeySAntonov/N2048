@@ -2,6 +2,7 @@ package com.aleksejantonov.n2048.feature.game.impl.ui.newgame.controller
 
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.aleksejantonov.n2048.feature.game.impl.ui.newgame.adapter.Cell
+import kotlin.random.Random
 
 class Recalculator {
 
@@ -196,13 +197,11 @@ class Recalculator {
     }
 
     private fun MutableList<Cell>.addRandom(): MutableList<Cell> {
-        // mock
-        for (cell in this) {
-            if (cell.value == null) {
-                this[cell.id] = this[cell.id].copy(value = 2)
-                break
-            }
-        }
+        val filteredList = this.filter { it.value == null }
+        val randomIndexId = filteredList[Random.nextInt(0, filteredList.size - 1)].id
+        val upTo = Random.nextInt(0, 100)
+        val nextValue = if (upTo > 91) 4 else 2
+        this[randomIndexId] = this[randomIndexId].copy(value = nextValue)
         return this
     }
 }
