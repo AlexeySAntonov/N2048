@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">N2048</string>
+    <string name="score_formatter">Score: %1$d</string>
 </resources>

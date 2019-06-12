@@ -75,6 +75,10 @@ class NewGameFragment : BaseFragment() {
                     this@NewGameFragment,
                     Observer {
                         adapter.updateList(it)
+                        scores.text = context?.getString(
+                            R.string.score_formatter,
+                            it.maxBy { cell -> cell.value ?: 0 }?.value
+                        )
                     }
                 )
             initializedData()
