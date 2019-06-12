@@ -40,6 +40,7 @@ class NewGameFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
+        observeSelectedPlayer()
         observeCellsState()
     }
 
@@ -66,6 +67,16 @@ class NewGameFragment : BaseFragment() {
             adapter = this@NewGameFragment.adapter
             setOnTouchListener(cellsTouchListener)
         }
+    }
+
+    private fun observeSelectedPlayer() {
+        newGameViewModel.observeSelectedPlayer()
+            .observe(
+                this,
+                Observer {
+                    player.text = context?.getString(R.string.player_formatter, it.first().name)
+                }
+            )
     }
 
     private fun observeCellsState() {

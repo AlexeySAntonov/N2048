@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">N2048</string>
+    <string name="player_formatter">Player: %1$s</string>
     <string name="score_formatter">Score: %1$d</string>
 </resources>
