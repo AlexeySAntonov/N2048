@@ -11,4 +11,11 @@ class NewGameRepository @Inject constructor(
 
     override fun observeSelectedPlayer(): LiveData<List<Player>> =
         databaseClientApi.playerDao().observeSelectedPlayer()
+
+    override fun updateScoreAsync(newScore: Long) {
+        val currentId = databaseClientApi.playerDao().getSelectedPlayer()?.id
+        currentId?.let {
+            databaseClientApi.playerDao().updateScore(it, newScore)
+        }
+    }
 }

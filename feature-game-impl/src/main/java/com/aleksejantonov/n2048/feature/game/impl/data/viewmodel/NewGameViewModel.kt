@@ -8,6 +8,9 @@ import com.aleksejantonov.core.navigation.api.data.AppRouter
 import com.aleksejantonov.n2048.feature.game.impl.data.repository.INewGameRepository
 import com.aleksejantonov.n2048.feature.game.impl.ui.newgame.adapter.Cell
 import com.aleksejantonov.n2048.model.Player
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -42,6 +45,14 @@ class NewGameViewModel @Inject constructor(
 
     fun observeSelectedPlayer(): LiveData<List<Player>> =
         Transformations.distinctUntilChanged(newGameRepository.observeSelectedPlayer())
+
+    fun saveScoreAsync(): Deferred<Unit?> {
+        return GlobalScope.async {
+            cellsState.value?.maxBy { cell -> cell.value ?: 0 }?.value?.toLong()?.let {
+                newGameRepository.updateScoreAsync(it)
+            }
+        }
+    }
 
     fun onBackPressed() = appRouter.navigateUp()
 

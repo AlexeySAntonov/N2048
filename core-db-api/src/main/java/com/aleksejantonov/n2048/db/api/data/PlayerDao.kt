@@ -31,4 +31,7 @@ interface PlayerDao {
 
     @Query("SELECT * FROM player WHERE isSelected = 1")
     fun observeSelectedPlayer(): LiveData<List<Player>>
+
+    @Query("UPDATE player SET score = :newScore WHERE id = :id")
+    fun updateScore(id: Long, newScore: Long)
 }

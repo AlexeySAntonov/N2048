@@ -2,4 +2,5 @@
     <string name="app_name">N2048</string>
     <string name="player_formatter">Player: %1$s</string>
     <string name="score_formatter">Score: %1$d</string>
+    <string name="save_and_exit_button_text">save and exit</string>
 </resources>

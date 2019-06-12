@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.aleksejantonov.n2048.core.ui.base.BaseFragment
+import com.aleksejantonov.n2048.core.ui.base.isVisible
 import com.aleksejantonov.n2048.feature.game.impl.R
 import com.aleksejantonov.n2048.feature.game.impl.data.viewmodel.NewGameViewModel
 import com.aleksejantonov.n2048.feature.game.impl.di.GameFeatureComponent
@@ -13,6 +14,9 @@ import com.aleksejantonov.n2048.feature.game.impl.ui.newgame.adapter.CellsAdapte
 import com.aleksejantonov.n2048.feature.game.impl.ui.newgame.controller.CellsTouchListener
 import com.aleksejantonov.n2048.feature.game.impl.ui.newgame.controller.Recalculator
 import kotlinx.android.synthetic.main.fragment_new_game.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class NewGameFragment : BaseFragment() {
@@ -32,6 +36,8 @@ class NewGameFragment : BaseFragment() {
         CellsTouchListener(newGameViewModel, Recalculator())
     }
 
+    private var oldScore: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         GameFeatureComponent.get().inject(this)
         super.onCreate(savedInstanceState)
@@ -40,6 +46,7 @@ class NewGameFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initList()
+        initViews()
         observeSelectedPlayer()
         observeCellsState()
     }
@@ -69,12 +76,22 @@ class NewGameFragment : BaseFragment() {
         }
     }
 
+    private fun initViews() {
+        saveAndExitButton.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                newGameViewModel.saveScoreAsync().await()
+                newGameViewModel.onBackPressed()
+            }
+        }
+    }
+
     private fun observeSelectedPlayer() {
         newGameViewModel.observeSelectedPlayer()
             .observe(
                 this,
                 Observer {
                     player.text = context?.getString(R.string.player_formatter, it.first().name)
+                    oldScore = it.first().score
                 }
             )
     }
@@ -86,10 +103,9 @@ class NewGameFragment : BaseFragment() {
                     this@NewGameFragment,
                     Observer {
                         adapter.updateList(it)
-                        scores.text = context?.getString(
-                            R.string.score_formatter,
-                            it.maxBy { cell -> cell.value ?: 0 }?.value
-                        )
+                        val maxCellValue = it.maxBy { cell -> cell.value ?: 0 }?.value
+                        scores.text = context?.getString(R.string.score_formatter, maxCellValue)
+                        saveGroup.isVisible = maxCellValue ?: 0 > oldScore
                     }
                 )
             initializedData()

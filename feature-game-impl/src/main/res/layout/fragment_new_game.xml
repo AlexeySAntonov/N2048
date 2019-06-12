@@ -43,7 +43,7 @@
         android:layout_height="0dp"
         android:layout_margin="32dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/saveAndExitButton"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,5 +51,38 @@
         app:spanCount="4"
         tools:itemCount="16"
         tools:listitem="@layout/item_cell" />
+
+    <ImageView
+        android:id="@+id/saveAndExitIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_arrow_back_24dp"
+        android:tint="@color/green"
+        app:layout_constraintBottom_toBottomOf="@+id/saveAndExitButton"
+        app:layout_constraintEnd_toStartOf="@+id/saveAndExitButton"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/saveAndExitButton" />
+
+    <Button
+        android:id="@+id/saveAndExitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/green"
+        android:text="@string/save_and_exit_button_text"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/saveAndExitIcon" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/saveGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="saveAndExitIcon, saveAndExitButton"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
