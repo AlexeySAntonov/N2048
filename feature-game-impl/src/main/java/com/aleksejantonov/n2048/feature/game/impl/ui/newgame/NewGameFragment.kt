@@ -36,7 +36,7 @@ class NewGameFragment : BaseFragment() {
         CellsTouchListener(newGameViewModel, Recalculator())
     }
 
-    private var oldScore: Long = 0
+    private var oldScore: Long = Long.MAX_VALUE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         GameFeatureComponent.get().inject(this)
