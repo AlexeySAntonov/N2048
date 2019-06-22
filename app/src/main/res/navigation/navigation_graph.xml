@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/scoresFragment"
-        android:name="com.aleksejantonov.n2048.feature.scores.impl.ScoresFragment"
+        android:name="com.aleksejantonov.n2048.feature.scores.impl.ui.ScoresFragment"
         android:label="fragment_new_game"
         tools:layout="@layout/fragment_scores"/>
 

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -19,10 +20,13 @@ dependencies {
     implementation project(':core-db-api')
     implementation project(':core-navigation-api')
     implementation project(':core-ui-base')
+    implementation project(':core-model')
 
     implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1"
     implementation 'androidx.room:room-runtime:2.1.0-rc01'
     implementation 'androidx.room:room-rxjava2:2.1.0-rc01'
     implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0-alpha01'

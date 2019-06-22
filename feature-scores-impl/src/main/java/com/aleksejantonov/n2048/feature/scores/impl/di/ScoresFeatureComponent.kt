@@ -5,11 +5,14 @@ import com.aleksejantonov.core.navigation.api.di.CoreNavigationApi
 import com.aleksejantonov.n2048.db.api.data.DatabaseClientApi
 import com.aleksejantonov.n2048.db.api.di.CoreDatabaseApi
 import com.aleksejantonov.n2048.feature.scores.api.di.ScoreFeatureApi
-import com.aleksejantonov.n2048.feature.scores.impl.ScoresFragment
+import com.aleksejantonov.n2048.feature.scores.impl.di.annotations.ScoresFeatureScope
+import com.aleksejantonov.n2048.feature.scores.impl.di.module.ScoresFeatureModule
+import com.aleksejantonov.n2048.feature.scores.impl.di.module.ScoresFeatureViewModelModule
+import com.aleksejantonov.n2048.feature.scores.impl.ui.ScoresFragment
 import dagger.Component
 
 @Component(
-    modules = [ScoresFeatureModule::class],
+    modules = [ScoresFeatureModule::class, ScoresFeatureViewModelModule::class],
     dependencies = [ScoresFeatureDependencies::class]
 )
 @ScoresFeatureScope

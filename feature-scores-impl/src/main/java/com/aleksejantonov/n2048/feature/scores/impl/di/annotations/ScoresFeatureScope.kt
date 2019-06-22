@@ -1,4 +1,4 @@
-package com.aleksejantonov.n2048.feature.scores.impl.di
+package com.aleksejantonov.n2048.feature.scores.impl.di.annotations
 
 import javax.inject.Scope
 
