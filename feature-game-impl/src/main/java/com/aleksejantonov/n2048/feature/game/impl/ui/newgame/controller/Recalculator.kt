@@ -198,10 +198,17 @@ class Recalculator {
 
     private fun MutableList<Cell>.addRandom(): MutableList<Cell> {
         val filteredList = this.filter { it.value == null }
-        val randomIndexId = filteredList[Random.nextInt(0, filteredList.size - 1)].id
+        if (filteredList.isEmpty()) return this
+
         val upTo = Random.nextInt(0, 100)
         val nextValue = if (upTo > 91) 4 else 2
-        this[randomIndexId] = this[randomIndexId].copy(value = nextValue)
+
+        if (filteredList.size == 1) {
+            this[filteredList[0].id] = this[filteredList[0].id].copy(value = nextValue)
+        } else {
+            val randomIndexId = filteredList[Random.nextInt(0, filteredList.size - 1)].id
+            this[randomIndexId] = this[randomIndexId].copy(value = nextValue)
+        }
         return this
     }
 }
