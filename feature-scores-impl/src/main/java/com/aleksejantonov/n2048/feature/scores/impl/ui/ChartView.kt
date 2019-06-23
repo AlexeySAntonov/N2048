@@ -18,33 +18,58 @@ class ChartView(context: Context, attrs: AttributeSet? = null) : View(context, a
 
     private val screenWidth = context.getScreenWidth()
     private val oval = RectF(screenWidth * 0.2f, screenWidth * 0.2f, screenWidth * 0.8f, screenWidth * 0.8f)
-    private var startAngle = 0f
+    private var startAngle = 180f
     private var sweepAngle = 0f
-    private val paint = Paint().apply {
-        color = Color.rgb(CHART_RED, CHART_GREEN, CHART_BLUE)
-        isAntiAlias = true
-    }
+    private val paints = mutableListOf<Paint>()
+    private val startAngles = mutableListOf<Float>()
+    private val sweepAngles = mutableListOf<Float>()
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas.save()
-        canvas.drawArc(oval, startAngle, sweepAngle, true, paint)
-        canvas.restore()
+        drawSectors(canvas)
     }
 
-    fun setPlayers(players: List<Player>) {
-        val pace = 360 / players.size - INTER_ANGLE
-        for (player in players) {
-            startAngle = sweepAngle + INTER_ANGLE
-            sweepAngle += pace
-            invalidate()
+    private fun drawSectors(canvas: Canvas) {
+        for (i in 0 until startAngles.size) {
+            canvas.drawArc(oval, startAngles[i], sweepAngles[i], true, paints[i])
         }
     }
 
+    fun setPlayers(players: List<Player>) {
+        val scoreSum = players.sumBy { it.score.toInt() }
+        val ratio = scoreSum / 360f
+
+        for (i in 0 until players.size) {
+            paints.add(
+                Paint().apply {
+                    isAntiAlias = true
+                    color = colors[i % colors.size]
+                }
+            )
+
+            startAngle += sweepAngle
+            sweepAngle = players[i].score / ratio
+            startAngles.add(startAngle)
+            sweepAngles.add(sweepAngle)
+        }
+
+        invalidate()
+    }
+
     companion object {
-        private const val CHART_RED = 136
-        private const val CHART_GREEN = 125
-        private const val CHART_BLUE = 147
-        private const val INTER_ANGLE = 10
+        private val FIRST_PLACE_COLOR = Color.rgb(229, 115, 115)
+        private val SECOND_PLACE_COLOR = Color.rgb(100, 181, 246)
+        private val THIRD_PLACE_COLOR = Color.rgb(174, 213, 129)
+        private val FOURTH_PLACE_COLOR = Color.rgb(255, 152, 0)
+        private val FIFTH_PLACE_COLOR = Color.rgb(136, 125, 147)
+
+        private val colors = arrayOf(
+            FIRST_PLACE_COLOR,
+            SECOND_PLACE_COLOR,
+            THIRD_PLACE_COLOR,
+            FOURTH_PLACE_COLOR,
+            FIFTH_PLACE_COLOR
+        )
+
     }
 }

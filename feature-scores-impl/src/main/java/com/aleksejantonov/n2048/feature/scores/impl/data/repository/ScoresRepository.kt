@@ -10,5 +10,5 @@ class ScoresRepository @Inject constructor(
 ) : IScoresRepository {
 
     override fun observePlayers(): LiveData<List<Player>> =
-        databaseClientApi.playerDao().getAllPlayers()
+        databaseClientApi.playerDao().getBestPlayers()
 }

@@ -17,8 +17,17 @@ interface PlayerDao {
     @Query("SELECT * FROM player WHERE id = :id")
     fun getPlayer(id: Long): Single<Player>
 
-    @Query("SELECT * FROM player")
+    @Query("SELECT * FROM player ORDER BY score DESC")
     fun getAllPlayers(): LiveData<List<Player>>
+
+    @Query(
+        """
+        SELECT * FROM player
+        ORDER BY score DESC
+        LIMIT 5
+        """
+    )
+    fun getBestPlayers(): LiveData<List<Player>>
 
     @Query("DELETE FROM player WHERE id = :id")
     fun removePlayer(id: Long)
