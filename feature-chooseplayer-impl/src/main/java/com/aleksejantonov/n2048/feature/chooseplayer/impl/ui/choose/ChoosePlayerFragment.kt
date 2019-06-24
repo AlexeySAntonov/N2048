@@ -119,7 +119,7 @@ class ChoosePlayerFragment : BaseFragment() {
                 Observer { players ->
                     players.firstOrNull()
                         ?.let {
-                            showToast(R.string.choose_player_selected_player, it.name)
+                            // showToast(R.string.choose_player_selected_player, it.name)
                         }
                         ?: showToast(R.string.choose_player_no_one_selected)
                 }
