@@ -1,5 +1,6 @@
 package com.aleksejantonov.n2048.feature.scores.impl.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -7,6 +8,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
+import com.aleksejantonov.n2048.core.ui.base.getPxFromDp
 import com.aleksejantonov.n2048.core.ui.base.getScreenWidth
 import com.aleksejantonov.n2048.model.Player
 
@@ -17,7 +19,7 @@ class ChartView(context: Context, attrs: AttributeSet? = null) : View(context, a
     }
 
     private val screenWidth = context.getScreenWidth()
-    private val oval = RectF(screenWidth * 0.2f, screenWidth * 0.2f, screenWidth * 0.8f, screenWidth * 0.8f)
+    private val oval = RectF()
     private var startAngle = 180f
     private var sweepAngle = 0f
     private val paints = mutableListOf<Paint>()
@@ -27,6 +29,23 @@ class ChartView(context: Context, attrs: AttributeSet? = null) : View(context, a
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         drawSectors(canvas)
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        setMeasuredDimension((screenWidth * 0.6).toInt(), (screenWidth * 0.6).toInt())
+    }
+
+    @SuppressLint("DrawAllocation")
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+
+        oval.set(
+            this.left.toFloat() - context.getPxFromDp(RIGHT_LEFT_MARGIN),
+            this.top.toFloat() - context.getPxFromDp(TOP_BOTTOM_MARGIN),
+            this.right.toFloat() - context.getPxFromDp(RIGHT_LEFT_MARGIN),
+            this.bottom.toFloat() - context.getPxFromDp(TOP_BOTTOM_MARGIN)
+        )
     }
 
     private fun drawSectors(canvas: Canvas) {
@@ -57,6 +76,9 @@ class ChartView(context: Context, attrs: AttributeSet? = null) : View(context, a
     }
 
     companion object {
+        private const val TOP_BOTTOM_MARGIN = 64
+        private const val RIGHT_LEFT_MARGIN = 48
+
         private val FIRST_PLACE_COLOR = Color.rgb(229, 115, 115)
         private val SECOND_PLACE_COLOR = Color.rgb(100, 181, 246)
         private val THIRD_PLACE_COLOR = Color.rgb(174, 213, 129)
