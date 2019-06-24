@@ -85,7 +85,7 @@ class ChartView(context: Context, attrs: AttributeSet? = null) : View(context, a
         private val FOURTH_PLACE_COLOR = Color.rgb(255, 152, 0)
         private val FIFTH_PLACE_COLOR = Color.rgb(136, 125, 147)
 
-        private val colors = arrayOf(
+        val colors = arrayOf(
             FIRST_PLACE_COLOR,
             SECOND_PLACE_COLOR,
             THIRD_PLACE_COLOR,
