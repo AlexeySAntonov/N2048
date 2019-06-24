@@ -4,16 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        layout="@layout/view_toolbar"
+        android:id="@+id/toolbar" />
+
     <com.aleksejantonov.n2048.feature.scores.impl.ui.ChartView
         android:id="@+id/chartView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="48dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

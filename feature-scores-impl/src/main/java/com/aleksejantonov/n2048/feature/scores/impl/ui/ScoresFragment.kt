@@ -2,6 +2,7 @@ package com.aleksejantonov.n2048.feature.scores.impl.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -30,7 +31,15 @@ class ScoresFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initToolbar()
         observePlayers()
+    }
+
+    private fun initToolbar() {
+        with(toolbar as Toolbar) {
+            setTitle(R.string.scores_toolbar_title)
+            setNavigationOnClickListener { scoresViewModel.onBackPressed() }
+        }
     }
 
     private fun observePlayers() {

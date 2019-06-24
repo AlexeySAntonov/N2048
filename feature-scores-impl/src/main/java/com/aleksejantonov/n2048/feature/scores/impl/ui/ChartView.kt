@@ -76,7 +76,7 @@ class ChartView(context: Context, attrs: AttributeSet? = null) : View(context, a
     }
 
     companion object {
-        private const val TOP_BOTTOM_MARGIN = 64
+        private const val TOP_BOTTOM_MARGIN = 72
         private const val RIGHT_LEFT_MARGIN = 48
 
         private val FIRST_PLACE_COLOR = Color.rgb(229, 115, 115)
