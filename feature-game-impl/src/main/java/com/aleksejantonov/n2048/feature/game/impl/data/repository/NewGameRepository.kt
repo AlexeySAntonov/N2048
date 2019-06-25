@@ -14,8 +14,10 @@ class NewGameRepository @Inject constructor(
 
     override fun updateScoreAsync(newScore: Long) {
         val currentId = databaseClientApi.playerDao().getSelectedPlayer()?.id
-        currentId?.let {
-            databaseClientApi.playerDao().updateScore(it, newScore)
-        }
+        currentId
+            ?.let {
+                databaseClientApi.playerDao().updateScore(it, newScore)
+            }
+            ?: databaseClientApi.playerDao().insertPlayer(Player(name = "Anonymous", score = newScore))
     }
 }
