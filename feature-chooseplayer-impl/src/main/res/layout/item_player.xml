@@ -6,11 +6,24 @@
     android:layout_height="wrap_content"
     android:background="?selectableItemBackground">
 
+    <ImageView
+        android:id="@+id/anonImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/anonymous"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/name"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/name"
+        tools:visibility="visible" />
+
     <TextView
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:ellipsize="end"
@@ -18,8 +31,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/score"
         app:layout_constraintEnd_toStartOf="@+id/checkIcon"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/anonImg"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginStart="16dp"
         tools:text="Alex Jr" />
 
     <TextView

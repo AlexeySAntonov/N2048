@@ -18,6 +18,6 @@ class NewGameRepository @Inject constructor(
             ?.let {
                 databaseClientApi.playerDao().updateScore(it, newScore)
             }
-            ?: databaseClientApi.playerDao().insertPlayer(Player(name = "Anonymous", score = newScore))
+            ?: databaseClientApi.playerDao().insertPlayer(Player(name = "Anonymous", score = newScore, isAnon = true))
     }
 }

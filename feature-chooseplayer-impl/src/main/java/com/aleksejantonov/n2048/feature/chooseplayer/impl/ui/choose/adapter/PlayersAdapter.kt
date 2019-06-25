@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.aleksejantonov.n2048.core.ui.base.isVisible
 import com.aleksejantonov.n2048.feature.chooseplayer.impl.R
 import com.aleksejantonov.n2048.model.Player
 import kotlinx.android.synthetic.main.item_player.view.*
@@ -34,7 +35,8 @@ class PlayersAdapter(
             with(itemView) {
                 name.text = item.name
                 score.text = context.getString(R.string.player_score, item.score)
-                checkIcon.visibility = if (item.isSelected) View.VISIBLE else View.GONE
+                checkIcon.isVisible = item.isSelected
+                anonImg.isVisible = item.isAnon
                 deleteIcon.setOnClickListener { deleteListener.invoke(item.id) }
                 setOnClickListener { selectListener.invoke(item.id) }
             }

@@ -9,5 +9,6 @@ data class Player(
     var id: Long = 0,
     var name: String,
     var score: Long = 0,
-    var isSelected: Boolean = false
+    var isSelected: Boolean = false,
+    var isAnon: Boolean = false
 )
