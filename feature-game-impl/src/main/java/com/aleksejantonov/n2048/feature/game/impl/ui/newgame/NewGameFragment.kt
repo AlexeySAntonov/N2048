@@ -90,8 +90,14 @@ class NewGameFragment : BaseFragment() {
             .observe(
                 this,
                 Observer {
-                    player.text = context?.getString(R.string.player_formatter, it.first().name)
-                    oldScore = it.first().score
+                    if (it.isNotEmpty()) {
+                        player.text = context?.getString(R.string.player_formatter, it.first().name)
+                        oldScore = it.first().score
+                    } else {
+                        anonImg.isVisible = true
+                        player.text = context?.getString(R.string.player_anon)
+                        oldScore = 0L
+                    }
                 }
             )
     }

@@ -15,7 +15,7 @@
         android:maxLines="1"
         android:textColor="@color/grey"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/anonImg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Player: Alexus" />
@@ -32,10 +32,23 @@
         android:maxLines="1"
         android:textColor="@color/grey"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/anonImg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player"
         tools:text="Scores: 2048" />
+
+    <ImageView
+        android:id="@+id/anonImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/anonymous"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/scores"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/player"
+        tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
